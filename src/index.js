@@ -1,6 +1,3 @@
-import React from 'react'
-import styles from './styles.module.css'
-
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export * from './utils';
+export { default as decorator } from './decorator';
+export { default as Editor } from './Components/Editor';
