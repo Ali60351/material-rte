@@ -75,7 +75,7 @@ export default theme => ({
     },
     removeScroll: {
         '& .DraftEditor-editorContainer > div': {
-            maxHeight: 'none'
+            maxHeight: 'none !important'
         }
     },
     editorRoot: {
@@ -87,25 +87,22 @@ export default theme => ({
             padding: '0 15px'
         },
 
-        '& .DraftEditor-editorContainer>div': {
-            fontSize: '13px',
-            lineHeight: '27px'
-        },
-
         '@media screen and (min-width: 960px)': {
-            '& .DraftEditor-editorContainer>div': {
-                fontSize: '16px',
-                lineHeight: '32px'
+            '& .DraftEditor-editorContainer > div': {
+                fontSize: '16px !important',
+                lineHeight: '32px !important'
             }
         },
 
         '@media (max-width: 600px)': {
             '& .DraftEditor-editorContainer button': {
-                padding: 9
+                padding: '9px !important'
             }
         },
 
         '& .DraftEditor-editorContainer > div': {
+            fontSize: '13px',
+
             margin: '20px',
             marginLeft: '0px',
             marginRight: '0px',
@@ -115,7 +112,7 @@ export default theme => ({
 
             color: '#172b4d',
             lineHeight: 'normal',
-            fontFamily: "'Open Sans', sans-serif'",
+            fontFamily: "'Open Sans', sans-serif",
             overflowY: 'auto',
             border: 'none',
             padding: '0px'

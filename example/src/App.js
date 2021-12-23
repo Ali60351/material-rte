@@ -23,7 +23,6 @@ class App extends React.Component {
         value={this.state.value}
         onChange={value => this.setState({value})}
         name="content"
-        removeScroll
       />
     </div>
   }
