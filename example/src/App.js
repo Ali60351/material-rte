@@ -18,6 +18,7 @@ class App extends React.Component {
 
   render() {
     return <div id="example-root">
+      <h2>Material Editor</h2>
       <Editor
         value={this.state.value}
         onChange={value => this.setState({value})}

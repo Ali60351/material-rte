@@ -8,6 +8,9 @@ export default theme => ({
             marginLeft: '16px'
         }
     },
+    zIndex9: {
+        zIndex: '9'
+    },
     error: {
         boxShadow: '0px 0px 0px 2px #f44336'
     },
