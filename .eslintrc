@@ -1,0 +1,41 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "react-app",
+    "plugin:prettier/recommended",
+    "prettier/standard",
+    "prettier/react",
+    "plugin:import/recommended"
+  ],
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "legacyDecorators": true,
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "16"
+    }
+  },
+  "rules": {
+    "jsx-quotes": ["error", "prefer-double"],
+    "space-before-function-paren": 0,
+    "react/prop-types": 0,
+    "react/jsx-handler-names": 0,
+    "react/jsx-fragments": 0,
+    "react/no-unused-prop-types": 0,
+    "import/export": 0,
+    "import/no-cycle": 0,
+    "import/prefer-default-export": 0,
+    "import/order": ["error",
+        {"groups": [["builtin", "external"], ["parent", "sibling", "index"]], "newlines-between": "always"}
+    ],
+    "import/no-unresolved": 0,
+    "arrow-parens": ["error", "as-needed"]
+  }
+}

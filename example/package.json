@@ -1,0 +1,26 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "license": "MIT",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel serve index.html --log-level verbose --no-cache",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "react-app-polyfill": "^1.0.0"
+  },
+  "alias": {
+    "react": "../node_modules/react",
+    "react-dom": "../node_modules/react-dom/profiling",
+    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling",
+    "material-rte": "file:../."
+  },
+  "devDependencies": {
+    "@parcel/transformer-typescript-tsc": "^2.0.1",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.8.4",
+    "parcel": "^2.0.1",
+    "typescript": "^3.4.5"
+  }
+}
