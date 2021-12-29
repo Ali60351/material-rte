@@ -1,160 +1,77 @@
-# TSDX React User Guide
+# Material RTE
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+A Rich Text Editor made for applications built using React and using Material UI (v4). A potential alternative to [CKEditor][ckeditor], [TinyMCE][tinymce] and other [rich text "WYSIWYG" editors][rte]. Based on [Draft.js][draft-js] which is maintained by Facebook.
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+## Demo
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+Try the editor here: [ali60351.github.io/material-rte/][material-rte-demo]
 
-## Commands
+[![Screenshot 1](https://i.imgur.com/WRQHpez.png)][react-rte-demo]
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+## Getting Started
 
-The recommended workflow is to run TSDX in one terminal:
-
-```bash
-npm start # or yarn start
+```sh
+npm install --save material-rte
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+The main component of this package is the `Editor` one. It comprises of the base editor from Draft.js, a header which contains several button which you can use to modify selected text and a footer which provides extra info and can be used to toggle scroll.
 
-Then run the example inside another:
+The value of the editor is controller via the `value` prop which can be initialized using an empty value or a HTML string. The output of the editor can be obtained in HTML string form by transforming the value via included function.
 
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
-```
+### Example Usage
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, we use [Parcel's aliasing](https://parceljs.org/module_resolution.html#aliases).
+```javascript
+import React from 'react';
+import { Editor, importEditor, exportEditor, createEmptyEditor } from 'material-rte';
 
-To do a one-off build, use `npm run build` or `yarn build`.
+class ExampleEditor extends React.Component {
+    constructor(props) {
+        super(props);
 
-To run tests, use `npm test` or `yarn test`.
+        // INITIALIZE USING BLANK VALUE
+        this.state = {
+            value: createEmptyEditor(),
+        };
 
-## Configuration
+        // INITIALIZE USING HTML STRING VALUE
+        // this.state = {
+        //     value: importEditor('<p>Lorem Ipsum</p>'),
+        // };
+    }
 
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
+    handleChange = value => {
+        console.log(exportEditor(value)); // PRINTS EDITOR VALUE IN HTML STRING FORM
+        this.setState({ value });
+    };
 
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-### Bundle analysis
-
-Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `npm run size` and visulize it with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
+    render() {
+        return <Editor value={this.state.value} onChange={this.handleChange} name="example-editor" />;
+    }
 }
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+## API
 
-## Module Formats
+### Required Props
 
-CJS, ESModules, and UMD module formats are supported.
+| Name  | Description                                                          | Type        |
+| ----- | -------------------------------------------------------------------- | ----------- |
+| value | Is the main prop responsible for controlling the value of the editor | EditorState |
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+### Other Props
 
-## Deploying the Example Playground
-
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
-
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
-```
-
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
-
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
-```
-
-## Named Exports
-
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
-
-## Including Styles
-
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
-
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
-
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+| Name               | Description                                                                                                                                                                                                                                                                 | Type     |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| onChange           | Function triggered on every editor change. Useful for updating editor value.                                                                                                                                                                                                | function |
+| onBlur             | Function trigger when editor loses focus. Useful for validation purposes.                                                                                                                                                                                                   | function |
+| maxLength          | Number used to specify the maximum length allowed for value. Default value is `-1`.                                                                                                                                                                                         | number   |
+| readOnly           | Toggle used to control if the value is editable or not. Also removes footer and header. Useful for displaying stored values. Default value is `false`.                                                                                                                      | number   |
+| maxLength          | Number used to specify the maximum length allowed for value. Default value is `-1`.                                                                                                                                                                                         | number   |
+| className          | String which can contain your CSS classes allowing for style customization                                                                                                                                                                                                  | string   |
+| name               | Attribute applied to the root of the editor. Useful for selecting element via `querySelector`                                                                                                                                                                               | string   |
+| error              | Toggle used to notify user if entered value is invalid                                                                                                                                                                                                                      | boolean  |
+| error              | Toggle used to notify user if entered value is invalid                                                                                                                                                                                                                      | boolean  |
+| removeScroll       | Removes maximum height limitation for the editor. Default value is `false`.                                                                                                                                                                                                 | boolean  |
+| showHeadingButtons | Removes header from the editor. Default value is `false`.                                                                                                                                                                                                                   | boolean  |
+| borderLess         | Removes border from the editor. Default value is `false`.                                                                                                                                                                                                                   | boolean  |
+| variables          | Is an optional array of variables in the format of `{value: '{{ custom_variable }}', id: 1}`. Upon insertion of a variable the user will see the variable in a Material Chip with the text `Custom variable`. Useful for filling value with dynamic values after submission | array    |

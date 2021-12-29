@@ -50,21 +50,26 @@ interface CustomEditorState {
     ref: React.RefObject<any>;
 }
 
-interface CustomEditorProps {
+interface EditorVariable {
+    id: number;
+    key: string;
+}
+
+type CustomEditorProps = typeof CustomEditor.defaultProps & {
     classes: any;
     value: EditorState;
-    onChange: (arg0: EditorState) => void;
-    onBlur: (e: React.SyntheticEvent) => void;
-    maxLength: number;
-    readOnly: boolean;
-    className: string;
-    name: string;
-    variables: Array<any>;
-    error: any;
-    removeScroll: boolean;
-    showHeadingButtons: boolean;
-    borderLess: boolean;
-}
+    onChange?: (arg0: EditorState) => void;
+    onBlur?: (e: React.SyntheticEvent) => void;
+    maxLength?: number;
+    readOnly?: boolean;
+    className?: string;
+    name?: string;
+    variables?: Array<EditorVariable>;
+    error?: any;
+    removeScroll?: boolean;
+    showHeadingButtons?: boolean;
+    borderLess?: boolean;
+};
 
 class CustomEditor extends React.Component<CustomEditorProps, CustomEditorState> {
     static defaultProps = {
@@ -74,7 +79,7 @@ class CustomEditor extends React.Component<CustomEditorProps, CustomEditorState>
         onChange: () => {},
         onBlur: () => {},
         name: '',
-        variables: [],
+        variables: [] as Array<EditorVariable>,
         error: false,
         removeScroll: false,
         showHeadingButtons: false,

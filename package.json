@@ -3,6 +3,11 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ali60351/material-rte.git"
+  },
+  "homepage": "https://github.com/Ali60351/material-rte#readme",
   "files": [
     "dist",
     "src"
