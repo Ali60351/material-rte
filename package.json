@@ -1,5 +1,5 @@
 {
-  "version": "0.1.4",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -84,6 +84,6 @@
     "typescript": "^4.5.4"
   },
   "keywords": [
-    "react",  "draft-js", "material-ui"
+    "react",  "draft-js", "material-ui",  "text-editor", "rich-text-editor", "rte"
   ]
 }

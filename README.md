@@ -6,7 +6,7 @@ A Rich Text Editor made for applications built using React and using Material UI
 
 ## Demo
 
-Try the editor here: [ali60351.github.io/material-rte/][material-rte-demo]
+Try the editor here: [Demo Site][material-rte-demo]
 
 [![Screenshot 1](https://i.imgur.com/WRQHpez.png)][material-rte-demo]
 
