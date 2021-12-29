@@ -1,5 +1,7 @@
 # Material RTE
 
+[![npm version](https://badge.fury.io/js/material-rte.svg)](https://badge.fury.io/js/material-rte)
+
 A Rich Text Editor made for applications built using React and using Material UI (v4). A potential alternative to [CKEditor][ckeditor], [TinyMCE][tinymce] and other [rich text "WYSIWYG" editors][rte]. Based on [Draft.js][draft-js] which is maintained by Facebook.
 
 ## Demo
