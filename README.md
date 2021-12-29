@@ -6,7 +6,7 @@ A Rich Text Editor made for applications built using React and using Material UI
 
 Try the editor here: [ali60351.github.io/material-rte/][material-rte-demo]
 
-[![Screenshot 1](https://i.imgur.com/WRQHpez.png)][react-rte-demo]
+[![Screenshot 1](https://i.imgur.com/WRQHpez.png)][material-rte-demo]
 
 ## Getting Started
 
@@ -75,3 +75,9 @@ class ExampleEditor extends React.Component {
 | showHeadingButtons | Removes header from the editor. Default value is `false`.                                                                                                                                                                                                                   | boolean  |
 | borderLess         | Removes border from the editor. Default value is `false`.                                                                                                                                                                                                                   | boolean  |
 | variables          | Is an optional array of variables in the format of `{value: '{{ custom_variable }}', id: 1}`. Upon insertion of a variable the user will see the variable in a Material Chip with the text `Custom variable`. Useful for filling value with dynamic values after submission | array    |
+
+[ckeditor]: http://ckeditor.com/
+[draft-js]: https://facebook.github.io/draft-js/
+[material-rte-demo]: https://ali60351.github.io/material-rte/
+[rte]: https://www.google.com/search?q=web+based+rich+text+editor
+[tinymce]: https://www.tinymce.com/
